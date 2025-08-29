@@ -1,44 +1,37 @@
-#include <stdio.h>
+#include <stdio.h>              
 
-int main() {
-int age, vip;
-float amount, discount = 0;
+int main() { 
+    int age;                                                                                            // ประกาศตัวแปร age เป็นจำนวนเต็ม
+    int VIP_level;                                                                                      // ประกาศตัวแปร VIP_level เป็นจำนวนเต็ม
+    float purchase_amount;                                                                              // ประกาศตัวแปร purchase_amount เป็นจำนวนทศนิยม
 
-// รับข้อมูลจากผู้ใช้
-printf("Enter age: ");
-scanf("%d", &age);
-printf("Enter VIP level (1-5): ");
-scanf("%d", &vip);
-printf("Enter purchase amount: ");
-scanf("%f", &amount);
+    printf("Enter age: ");                                                                              // รับค่าอายุ
+    scanf("%d", &age);                                                                                  // เก็บค่าที่รับมาในตัวแปร age
+    printf("Enter your VIP level (1-5): ");                                                             // รับค่าระดับ VIP
+    scanf("%d", &VIP_level);                                                                            //เก็บค่าที่รับมาในตัวแปร VIP_level
+    printf("Enter your purchase amount: \n");                                                           // รับค่าจำนวนเงินที่ใช้ซื้อสินค้า
+    scanf("%f", &purchase_amount);                                                                      // เก็บค่าที่รับมาในตัวแปร purchase_amount
 
-// เงื่อนไขการให้ส่วนลด
-if (vip == 5 || amount > 50000) {
-discount = 25;
-}
-else if (age > 60 || (vip >= 3 && vip <= 4)) {
-discount = 20;
-}
-else if (age >= 30 && age <= 40 && amount > 2000) {
-discount = 15;
-}
-else if (age >= 18 && age <= 25 && amount > 1000) {
-discount = 10;
-}
-else {
-discount = 0;
-}
+    printf("--- Customer Info ---\n");                                                                  // แสดงหัวข้อ Customer Info
+    printf("Age: %d | VIP level: %d | Amount: %.2f\n", age, VIP_level, purchase_amount);                // แสดงผลข้อมูลลูกค้า
 
-// แสดงผลลัพธ์
-printf("\n--- Customer Info ---\n");
-printf("Age: %d | VIP Level: %d | Amount: %.2f THB\n", age, vip, amount);
+    if ((age >= 60) || ((VIP_level == 3) || (VIP_level == 4))) {                                        // ถ้าอายุ 60 ปีขึ้นไป หรือ ระดับ VIP เป็น 3 หรือ 4
+        printf("Discount received: 20%%!\n");                                                           // แสดงผล Discount received: 20%!
+    } 
+    else if (((age >= 30) && (age <= 40)) && (purchase_amount > 2000)) {                                // ถ้าอายุระหว่าง 30-40 ปี และ จำนวนเงินที่ใช้ซื้อสินค้ามากกว่า 2000
+        printf("Discount received: 15%%!\n");                                                           // แสดงผล Discount received: 15%!
+    } 
+    else if (((age >= 18) && (age <= 25)) && (purchase_amount > 1000)) {                                // ถ้าอายุระหว่าง 18-25 ปี และ จำนวนเงินที่ใช้ซื้อสินค้ามากกว่า 1000
+        printf("Discount received: 10%%!\n");                                                           // แสดงผล Discount received: 10%!
+    } 
+    else if ((VIP_level == 5) || (purchase_amount > 50000)) {                                           // ถ้าระดับ VIP เป็น 5 หรือ จำนวนเงินที่ใช้ซื้อสินค้ามากกว่า 50000
+        printf("Discount received: 25%%!\n");                                                           // แสดงผล Discount received: 25%!
+    } 
+    else {
+        printf("No Discount applied.\n");                                                               // แสดงผล No Discount applied.
+    } 
 
-if (discount > 0) {
-printf("Discount received: %.0f%%\n", discount);
-} else {
-printf("No discount applied\n");
-}
-
-printf("Thank you for shopping with us!\n");
-return 0;
+    printf("Thank you for shopping with us!\n");                                                        // แสดงผล Thank you for shopping with us!
+    
+    return 0;
 }
